@@ -1,0 +1,406 @@
+/* --- 1. SETUP VARIABEL WARNA (DARK MODE) --- */
+:root {
+    /* Warna Mode Terang (Default) */
+    --bg-body: #ffffff;
+    --bg-nav: #ffffff;
+    --bg-light: #f8f9fa;
+    --bg-card: #ffffff;
+    --text-main: #333333;
+    --text-heading: #2c3e50;
+    --text-footer: #ffffff;
+    --bg-footer: #2c3e50;
+    --shadow: rgba(0,0,0,0.1);
+    --primary: #e67e22;
+}
+
+/* Warna Mode Gelap */
+body.dark-mode {
+    --bg-body: #121212;
+    --bg-nav: #1e1e1e;
+    --bg-light: #181818;
+    --bg-card: #1e1e1e;
+    --text-main: #e0e0e0;
+    --text-heading: #ffffff;
+    --text-footer: #e0e0e0;
+    --bg-footer: #000000;
+    --shadow: rgba(0,0,0,0.5);
+}
+
+/* Reset Dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden; /* Mencegah scroll samping akibat animasi */
+}
+
+body {
+    line-height: 1.6;
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    transition: background-color 0.3s, color 0.3s;
+    overflow-x: hidden;
+}
+
+/* --- NAVIGASI --- */
+.navbar {
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-nav);
+    padding: 1rem 5%;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    box-shadow: 0 2px 5px var(--shadow);
+    z-index: 1000;
+}
+
+/* LOGO */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 6px; 
+}
+
+.logo .img-sinode {
+    height: 38px !important;
+    width: auto;
+    margin-right: -10px; 
+}
+
+.logo .img-gereja {
+    height: 52px !important;
+    width: auto;
+}
+
+.logo span {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-left: 10px;
+    color: var(--text-heading);
+}
+
+/* MENU LINKS */
+.nav-links {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    margin-left: auto; /* Mendorong menu ke kanan */
+    margin-right: 20px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: var(--text-main);
+    padding: 0 1rem;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.nav-links li a:hover {
+    color: var(--primary);
+}
+
+/* TOMBOL DARK MODE */
+.btn-toggle-dark {
+    background: none;
+    border: 1px solid var(--text-main);
+    color: var(--text-main);
+    padding: 5px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    margin-left: 15px;
+    margin-right: 15px;
+    transition: all 0.3s ease;
+}
+
+.btn-toggle-dark:hover {
+    background-color: var(--bg-light);
+}
+
+/* TOMBOL BURGER */
+.burger {
+    display: none;
+    cursor: pointer;
+}
+
+.burger div {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-main);
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+/* --- HERO SLIDER --- */
+.hero-slider {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: #000;
+}
+
+.slider-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.hero-static-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    width: 80%;
+    z-index: 20;
+    pointer-events: auto;
+}
+
+.hero-static-text h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+}
+
+.hero-static-text p {
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
+}
+
+.slide {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.5);
+}
+
+.fade {
+    animation-name: fade;
+    animation-duration: 2.0s;
+}
+
+@keyframes fade {
+    from {opacity: 0.4} 
+    to {opacity: 1}
+}
+
+/* --- BAGIAN UMUM --- */
+.btn {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    padding: 0.8rem 2rem;
+    text-decoration: none;
+    border-radius: 50px;
+    margin-top: 1rem;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background: #d35400;
+}
+
+.whatsapp-btn {
+    background-color: #25D366;
+}
+.whatsapp-btn:hover {
+    background-color: #128C7E;
+}
+
+.section {
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.bg-light {
+    background-color: var(--bg-light);
+}
+
+h2 {
+    margin-bottom: 1rem;
+    color: var(--text-heading);
+}
+
+/* STYLE UNTUK PETA (BARU) */
+.map-container iframe {
+    border-radius: 10px;
+    box-shadow: 0 5px 15px var(--shadow);
+}
+
+/* KARTU JADWAL */
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: var(--bg-card);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px var(--shadow);
+    width: 300px;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h3 {
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+/* GALERI FOTO */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin-top: 2rem;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 5px 15px var(--shadow);
+}
+
+/* FORM BERDAMPINGAN */
+.forms-wrapper {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.form-col {
+    flex: 1;
+    min-width: 300px;
+    background: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px var(--shadow);
+}
+
+.form-col h3 {
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.form-desc {
+    font-size: 0.9rem;
+    color: var(--text-main);
+    margin-bottom: 1rem;
+}
+
+.iframe-container iframe {
+    width: 100%;
+    border: none;
+    background: white; 
+    border-radius: 5px;
+}
+
+/* FOOTER */
+footer {
+    background: var(--bg-footer);
+    color: var(--text-footer);
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: auto;
+}
+
+/* --- RESPONSIF (HP/TABLET) --- */
+@media screen and (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    /* Menu Slider di HP (BARU DI UPDATE) */
+    .nav-links {
+        position: absolute;
+        right: 0px;
+        height: 92vh;
+        top: 8vh;
+        background-color: var(--bg-nav);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 60%;
+        transform: translateX(100%); /* Sembunyi ke kanan */
+        transition: transform 0.5s ease-in;
+        box-shadow: -2px 0 5px var(--shadow);
+    }
+
+    /* Class untuk memunculkan menu */
+    .nav-links.nav-active {
+        transform: translateX(0%);
+    }
+    
+    .nav-links li {
+        margin-top: 30px;
+        opacity: 0;
+        animation: navLinkFade 0.5s ease forwards 0.3s;
+    }
+
+    .burger {
+        display: block; 
+    }
+
+    .hero-static-text h1 {
+        font-size: 2rem;
+    }
+    .hero-static-text p {
+        font-size: 1rem;
+    }
+    .section {
+        padding: 3rem 1rem;
+    }
+}
+
+/* Animasi link menu di HP */
+@keyframes navLinkFade {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
