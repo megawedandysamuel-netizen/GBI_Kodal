@@ -1,16 +1,16 @@
 console.log("Website Gereja Berjalan!");
 
-// --- 1. LOGIKA MENU HP (BURGER) - BARU ---
+// --- 1. LOGIKA MENU HP (BURGER) ---
 const burger = document.querySelector('.burger');
 const nav = document.querySelector('.nav-links');
 const navLinks = document.querySelectorAll('.nav-links li');
 
 if (burger) {
     burger.addEventListener('click', () => {
-        // Toggle Navigasi
+        // 1. Geser Menu
         nav.classList.toggle('nav-active');
 
-        // Animasi Link (Opsional agar lebih halus)
+        // 2. Animasi Link Masuk
         navLinks.forEach((link, index) => {
             if (link.style.animation) {
                 link.style.animation = '';
@@ -19,7 +19,7 @@ if (burger) {
             }
         });
 
-        // Animasi Burger (X shape)
+        // 3. Animasi Burger jadi X
         burger.classList.toggle('toggle');
     });
 }
@@ -73,7 +73,13 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         
         // Tutup menu HP otomatis saat link diklik
         if (nav.classList.contains('nav-active')) {
-            nav.classList.remove('nav-active');
+            nav.classList.remove('nav-active'); // Tutup menu
+            burger.classList.remove('toggle'); // Balikkan X jadi garis lagi
+            
+            // Reset animasi link
+            navLinks.forEach((link) => {
+                link.style.animation = '';
+            });
         }
 
         if (target) {
