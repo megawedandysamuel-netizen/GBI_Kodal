@@ -1,16 +1,12 @@
 console.log("Website Gereja Berjalan!");
 
-// --- 1. LOGIKA MENU HP (BURGER) ---
 const burger = document.querySelector('.burger');
 const nav = document.querySelector('.nav-links');
 const navLinks = document.querySelectorAll('.nav-links li');
 
 if (burger) {
     burger.addEventListener('click', () => {
-        // 1. Geser Menu
         nav.classList.toggle('nav-active');
-
-        // 2. Animasi Link Masuk
         navLinks.forEach((link, index) => {
             if (link.style.animation) {
                 link.style.animation = '';
@@ -18,13 +14,10 @@ if (burger) {
                 link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
             }
         });
-
-        // 3. Animasi Burger jadi X
         burger.classList.toggle('toggle');
     });
 }
 
-// --- 2. LOGIKA DARK MODE ---
 const toggleBtn = document.getElementById('dark-mode-toggle');
 const body = document.body;
 
@@ -46,9 +39,7 @@ if (toggleBtn) {
     });
 }
 
-// --- 3. LOGIKA SLIDER OTOMATIS ---
 let slideIndex = 0;
-
 if (document.getElementsByClassName("slide").length > 0) {
     showSlides();
 }
@@ -65,18 +56,14 @@ function showSlides() {
     setTimeout(showSlides, 4000); 
 }
 
-// --- 4. SMOOTH SCROLL NAVIGASI ---
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         
-        // Tutup menu HP otomatis saat link diklik
         if (nav.classList.contains('nav-active')) {
-            nav.classList.remove('nav-active'); // Tutup menu
-            burger.classList.remove('toggle'); // Balikkan X jadi garis lagi
-            
-            // Reset animasi link
+            nav.classList.remove('nav-active'); 
+            burger.classList.remove('toggle'); 
             navLinks.forEach((link) => {
                 link.style.animation = '';
             });
