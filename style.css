@@ -36,7 +36,9 @@ body.dark-mode {
 
 html {
     scroll-behavior: smooth;
-    overflow-x: hidden; /* Mencegah scroll samping di HP */
+    /* PERBAIKAN: Mencegah scroll samping agar tidak ada ruang putih di kanan */
+    overflow-x: hidden; 
+    width: 100%;
 }
 
 body {
@@ -44,7 +46,8 @@ body {
     background-color: var(--bg-body);
     color: var(--text-main);
     transition: background-color 0.3s, color 0.3s;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Tambahan pengaman */
+    width: 100%;
 }
 
 /* --- NAVIGASI --- */
@@ -56,9 +59,10 @@ body {
     position: fixed;
     width: 100%;
     top: 0;
-    height: 80px; /* Tinggi navbar tetap */
+    height: 80px; 
     box-shadow: 0 2px 5px var(--shadow);
     z-index: 1000;
+    justify-content: space-between; /* Pastikan isi navbar rata */
 }
 
 /* LOGO */
@@ -135,31 +139,33 @@ body {
     transition: all 0.3s ease;
 }
 
-/* --- HERO SLIDER --- */
+/* --- HERO SLIDER (PERBAIKAN UTAMA CENTERING) --- */
 .hero-slider {
     position: relative;
     width: 100%;
     height: 100vh;
     overflow: hidden;
     background: #000;
-    margin-top: 0; /* Pastikan tidak ada margin putih di atas */
+    margin-top: 0; 
 }
 
 .slider-container {
     width: 100%;
     height: 100%;
     position: relative;
+    /* TEKNIK FLEXBOX UNTUK CENTERING SEMPURNA */
+    display: flex;
+    justify-content: center; /* Tengah Horizontal */
+    align-items: center;     /* Tengah Vertikal */
 }
 
-/* Posisi Teks Tengah */
+/* Teks Statis di Tengah */
 .hero-static-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* KUNCI AGAR CENTER */
+    position: relative; /* Bukan Absolute lagi, agar aman dari animasi */
     text-align: center;
     color: white;
-    width: 90%; /* Sedikit lebih lebar di HP */
+    width: 90%; 
+    max-width: 800px;
     z-index: 20;
     pointer-events: auto;
 }
@@ -226,6 +232,7 @@ body {
 .container {
     max-width: 1100px;
     margin: 0 auto;
+    width: 100%; /* Pastikan container tidak melebihi layar */
 }
 
 .bg-light {
@@ -237,7 +244,7 @@ h2 {
     color: var(--text-heading);
 }
 
-/* PETA & IFRAME (Agar Responsif di HP) */
+/* PETA & IFRAME */
 .map-container, .iframe-container {
     position: relative;
     width: 100%;
@@ -245,7 +252,7 @@ h2 {
     border-radius: 10px;
 }
 .map-container iframe, .iframe-container iframe {
-    width: 100% !important; /* Paksa lebar penuh */
+    width: 100% !important; 
     max-width: 100%;
 }
 
@@ -321,38 +328,34 @@ footer {
 /* --- RESPONSIF KHUSUS HP (Mobile) --- */
 @media screen and (max-width: 768px) {
     
-    /* Atur Ulang Menu */
     .nav-links {
         position: absolute;
         right: 0px;
-        height: calc(100vh - 80px); /* Full height minus navbar */
+        height: calc(100vh - 80px); 
         top: 80px;
         background-color: var(--bg-nav);
         display: flex;
         flex-direction: column;
-        justify-content: center; /* Menu di tengah vertikal */
+        justify-content: center; 
         align-items: center;
-        width: 60%; /* Lebar menu sliding */
+        width: 60%; 
         transform: translateX(100%);
         transition: transform 0.5s ease-in;
         box-shadow: -2px 0 5px var(--shadow);
     }
 
     .nav-links li {
-        margin: 20px 0; /* Jarak antar menu lebih lebar di HP */
+        margin: 20px 0; 
     }
 
-    /* Class Aktif untuk Menu */
     .nav-links.nav-active {
         transform: translateX(0%);
     }
 
-    /* Tombol Burger Muncul */
     .burger {
         display: block; 
     }
 
-    /* Animasi Burger Menjadi X */
     .toggle .line1 {
         transform: rotate(-45deg) translate(-5px, 6px);
     }
@@ -363,23 +366,21 @@ footer {
         transform: rotate(45deg) translate(-5px, -6px);
     }
 
-    /* Penyesuaian Teks & Padding */
     .hero-static-text h1 {
-        font-size: 2rem; /* Judul lebih kecil */
+        font-size: 2rem; 
     }
     .hero-static-text p {
         font-size: 1rem;
     }
     .section {
-        padding: 3rem 1.5rem; /* Padding samping diperkecil */
+        padding: 3rem 1.5rem; 
     }
     
     .logo span {
-        font-size: 1.1rem; /* Nama gereja diperkecil sedikit agar muat */
+        font-size: 1.1rem; 
     }
 }
 
-/* Animasi link menu */
 @keyframes navLinkFade {
     from { opacity: 0; transform: translateX(50px); }
     to { opacity: 1; transform: translateX(0); }
