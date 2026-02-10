@@ -1,6 +1,5 @@
 /* --- 1. SETUP VARIABEL WARNA (DARK MODE) --- */
 :root {
-    /* Warna Mode Terang */
     --bg-body: #ffffff;
     --bg-nav: #ffffff;
     --bg-light: #f8f9fa;
@@ -13,7 +12,6 @@
     --primary: #e67e22;
 }
 
-/* Warna Mode Gelap */
 body.dark-mode {
     --bg-body: #121212;
     --bg-nav: #1e1e1e;
@@ -26,7 +24,7 @@ body.dark-mode {
     --shadow: rgba(0,0,0,0.5);
 }
 
-/* Reset Dasar */
+/* --- 2. RESET & GLOBAL (PENTING UNTUK MENGHILANGKAN SISI PUTIH) --- */
 * {
     margin: 0;
     padding: 0;
@@ -34,11 +32,11 @@ body.dark-mode {
     font-family: 'Poppins', sans-serif;
 }
 
-html {
-    scroll-behavior: smooth;
-    /* PERBAIKAN: Mencegah scroll samping agar tidak ada ruang putih di kanan */
-    overflow-x: hidden; 
+html, body {
     width: 100%;
+    max-width: 100%;
+    overflow-x: hidden; /* Kunci agar tidak bisa digeser ke samping */
+    scroll-behavior: smooth;
 }
 
 body {
@@ -46,11 +44,9 @@ body {
     background-color: var(--bg-body);
     color: var(--text-main);
     transition: background-color 0.3s, color 0.3s;
-    overflow-x: hidden; /* Tambahan pengaman */
-    width: 100%;
 }
 
-/* --- NAVIGASI --- */
+/* --- 3. NAVIGASI --- */
 .navbar {
     display: flex;
     align-items: center;
@@ -62,7 +58,7 @@ body {
     height: 80px; 
     box-shadow: 0 2px 5px var(--shadow);
     z-index: 1000;
-    justify-content: space-between; /* Pastikan isi navbar rata */
+    /* Jangan gunakan space-between jika ingin kontrol manual */
 }
 
 /* LOGO */
@@ -70,6 +66,7 @@ body {
     display: flex;
     align-items: center;
     gap: 6px; 
+    flex-shrink: 0; /* Logo tidak boleh mengecil */
 }
 
 .logo .img-sinode {
@@ -88,6 +85,7 @@ body {
     font-weight: 600;
     margin-left: 10px;
     color: var(--text-heading);
+    white-space: nowrap; /* Teks tidak boleh turun baris */
 }
 
 /* MENU LINKS */
@@ -95,6 +93,7 @@ body {
     display: flex;
     list-style: none;
     align-items: center;
+    /* Ini mendorong menu ke kanan di Desktop */
     margin-left: auto; 
     margin-right: 20px;
 }
@@ -120,15 +119,16 @@ body {
     border-radius: 20px;
     cursor: pointer;
     font-size: 1.2rem;
-    margin-left: 15px;
     margin-right: 15px;
     transition: all 0.3s ease;
+    flex-shrink: 0;
 }
 
 /* TOMBOL BURGER */
 .burger {
     display: none;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
 .burger div {
@@ -139,10 +139,11 @@ body {
     transition: all 0.3s ease;
 }
 
-/* --- HERO SLIDER (PERBAIKAN UTAMA CENTERING) --- */
+/* --- 4. HERO SLIDER --- */
 .hero-slider {
     position: relative;
-    width: 100%;
+    /* GANTI DARI 100vw KE 100% UNTUK HILANGKAN SCROLL SAMPING */
+    width: 100%; 
     height: 100vh;
     overflow: hidden;
     background: #000;
@@ -153,15 +154,13 @@ body {
     width: 100%;
     height: 100%;
     position: relative;
-    /* TEKNIK FLEXBOX UNTUK CENTERING SEMPURNA */
     display: flex;
-    justify-content: center; /* Tengah Horizontal */
-    align-items: center;     /* Tengah Vertikal */
+    justify-content: center;
+    align-items: center;     
 }
 
-/* Teks Statis di Tengah */
 .hero-static-text {
-    position: relative; /* Bukan Absolute lagi, agar aman dari animasi */
+    position: relative; 
     text-align: center;
     color: white;
     width: 90%; 
@@ -232,7 +231,8 @@ body {
 .container {
     max-width: 1100px;
     margin: 0 auto;
-    width: 100%; /* Pastikan container tidak melebihi layar */
+    width: 100%; 
+    overflow: hidden; /* Mencegah konten dalam container melebar */
 }
 
 .bg-light {
@@ -328,6 +328,14 @@ footer {
 /* --- RESPONSIF KHUSUS HP (Mobile) --- */
 @media screen and (max-width: 768px) {
     
+    /* 1. PERBAIKAN POSISI TOMBOL DARK MODE DI HP */
+    .btn-toggle-dark {
+        /* Fungsi: Dorong tombol ini mentok ke kanan */
+        margin-left: auto; 
+        margin-right: 15px; /* Jarak sedikit dengan burger */
+    }
+
+    /* 2. MENU SLIDING */
     .nav-links {
         position: absolute;
         right: 0px;
@@ -342,20 +350,25 @@ footer {
         transform: translateX(100%);
         transition: transform 0.5s ease-in;
         box-shadow: -2px 0 5px var(--shadow);
-    }
-
-    .nav-links li {
-        margin: 20px 0; 
+        
+        /* Reset margin agar tidak bentrok di mobile */
+        margin-left: 0; 
+        margin-right: 0;
     }
 
     .nav-links.nav-active {
         transform: translateX(0%);
     }
 
+    .nav-links li {
+        margin: 20px 0; 
+    }
+
     .burger {
         display: block; 
     }
 
+    /* ANIMASI BURGER */
     .toggle .line1 {
         transform: rotate(-45deg) translate(-5px, 6px);
     }
@@ -366,18 +379,25 @@ footer {
         transform: rotate(45deg) translate(-5px, -6px);
     }
 
+    /* TEXT HERO */
     .hero-static-text h1 {
         font-size: 2rem; 
     }
     .hero-static-text p {
         font-size: 1rem;
+        padding: 0 10px;
     }
     .section {
         padding: 3rem 1.5rem; 
     }
     
     .logo span {
-        font-size: 1.1rem; 
+        font-size: 1rem; 
+        margin-left: 5px;
+    }
+    
+    .navbar {
+        padding: 1rem 1.5rem; /* Kurangi padding navbar di HP */
     }
 }
 
