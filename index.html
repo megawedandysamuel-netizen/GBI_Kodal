@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GBI KODAL</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="logosinode.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
@@ -59,6 +60,17 @@
         </div>
     </section>
 
+    <section id="daily-verse" class="section">
+        <div class="container" data-aos="fade-up">
+            <div class="verse-card">
+                <h3>📖 Ayat Emas Hari Ini</h3>
+                <blockquote id="verse-content">
+                    "Memuat ayat..."
+                </blockquote>
+                <p id="verse-reference"></p>
+            </div>
+        </div>
+    </section>
     <section id="about" class="container section">
         <h2 data-aos="fade-up">Tentang Kami</h2>
         <p data-aos="fade-up" data-aos-delay="100">Kami adalah komunitas orang percaya yang berkomitmen untuk melayani Tuhan dan sesama. Visi kami adalah hidup yang memiliki nilai-nilai kerajaan Allah.</p>
@@ -170,12 +182,14 @@
             <p>Butuh informasi lebih lanjut? Hubungi sekretariat kami.</p>
             
             <div class="map-container" data-aos="zoom-in" style="margin: 20px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.439232527073!2d121.33403913218798!3d-1.9787361559913919!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d8fe616b6aab09d%3A0x24f140e1292ef082!2sGereja%20Bethel%20Indonesia%20Jemaat%20Kolonodale!5e0!3m2!1sid!2sid!4v1770600291763!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" 
+                <iframe 
+                    width="100%" 
                     height="350" 
-                    style="border:0;" 
-                    allowfullscreen="" 
-                    loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade">
+                    frameborder="0" 
+                    scrolling="no" 
+                    marginheight="0" 
+                    marginwidth="0" 
+                    src="https://maps.google.com/maps?q=Gereja+Bethel+Indonesia+Jemaat+Kolonodale+Jl.+Bumi+Nangka&t=&z=15&ie=UTF8&iwloc=B&output=embed">
                 </iframe>
             </div>
 
@@ -205,4 +219,3 @@
     <script src="navigasi.js"></script>
 </body>
 </html>
-
